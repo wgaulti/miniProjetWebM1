@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exemple</title>
+<link rel="stylesheet" href="general.css">
+<script> alert("coucou");</script>
+
+</head>
+<body>
+
+<p id="p1"> 
+Hello
+</p>
+
+<p id="autreP" onclick="alert('reBonjour'); document.getElementById('p1').innerHTML ='Au revoir';">
+Clique-moi !
+</p>
+
+<script>
+document.getElementById("p1").innerHTML = "Bonjour";
+</script>
+
+</body>
+</html>
