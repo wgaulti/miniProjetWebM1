@@ -5,7 +5,7 @@ public class Character {
 	private String name;
 	private int hpMax;
 	private int attack;
-	private double dodgePercent = 0.05;
+	private double dodgePercent = 0.8;
 
 	public Character() {
 	}

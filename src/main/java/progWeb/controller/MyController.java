@@ -30,10 +30,6 @@ public class MyController {
 		response.getOutputStream().write(
 				s.getBytes("UTF-8"));
 	}
-
-	
-	
-
 	
 	
 	
@@ -94,7 +90,7 @@ public class MyController {
 			response.addCookie(new Cookie("attack", "" + chosen.getAttack()));
 			response.addCookie(new Cookie("dodge", "" + chosen.getDodgePercent()));
 		}
-		response.sendRedirect("/showCharacter.html");
+		response.sendRedirect("/nextFoe");
 	}
 
 //	@RequestMapping(value = "/character", method = RequestMethod.GET)
@@ -120,11 +116,18 @@ public class MyController {
 	@RequestMapping(value = "/takeDammage", method = RequestMethod.GET)
 	public void takeDammage(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException, IOException {
+		
+		int damStr = 0;
+		for (Cookie c : request.getCookies()) {
+			
+			if (c.getName().equals("foeAttack")) {
+				damStr = Integer.parseInt(c.getValue());
+			}
+		}
 
-		String damStr = request.getParameter("dammage");
 		System.out.println(damStr);
-		if (damStr != null) {
-			int dammage = Integer.parseInt(damStr);
+		if (damStr != 0) {
+			int dammage = damStr;
 			int hp = 0;
 			for (Cookie c : request.getCookies()) {
 
@@ -135,6 +138,34 @@ public class MyController {
 			hp = (hp - dammage > 0) ? hp - dammage : 0;
 			response.addCookie(new Cookie("HP", "" + hp));
 		}
+		response.sendRedirect("/takeDammageFoe");
+
+	}
+	
+	@RequestMapping(value = "/takeDammageFoe", method = RequestMethod.GET)
+	public void takeDammageFoe(HttpServletRequest request, HttpServletResponse response)
+			throws UnsupportedEncodingException, IOException {
+
+		int damStrFoe = 0;
+		for (Cookie c : request.getCookies()) {
+			
+			if (c.getName().equals("attack")) {
+				damStrFoe = Integer.parseInt(c.getValue());
+			}
+		}
+		System.out.println(damStrFoe);
+		if (damStrFoe != 0) {
+			int dammage = damStrFoe;
+			int hp = 0;
+			for (Cookie c : request.getCookies()) {
+
+				if (c.getName().equals("foeHP")) {
+					hp = Integer.parseInt(c.getValue());
+				}
+			}
+			hp = (hp - dammage > 0) ? hp - dammage : 0;
+			response.addCookie(new Cookie("foeHP", "" + hp));
+		}
 		response.sendRedirect("/showCharacter.html");
 
 	}
@@ -142,21 +173,28 @@ public class MyController {
 	@RequestMapping(value = "/nextFoe", method = RequestMethod.GET)
 	public void nextFoe(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException, IOException {
+	
+		System.out.println("nextFoe");
 		int previousFoe = -1;
 		for (Cookie c : request.getCookies()) {
 			if (c.getName().equals("foeNumber")) {
 				previousFoe = Integer.parseInt(c.getValue());
+				response.getOutputStream().write("Nouvel ennemi".getBytes("UTF-8"));
 			}
 		}
 		try {
 			Character foe = Universe.getMonsters().get(previousFoe + 1);
 			response.addCookie(new Cookie("foeNumber", "" + (previousFoe + 1)));
 			response.addCookie(new Cookie("foeName", foe.getName()));
-			response.addCookie(new Cookie("foeHP", " " + foe.getHpMax()));
+			response.addCookie(new Cookie("foeHP", "" + foe.getHpMax()));
 			response.addCookie(new Cookie("foeAttack", "" + foe.getAttack()));
+			
 		} catch (IndexOutOfBoundsException e) {
 			response.getOutputStream().write("Tous les ennemis sont vaincus".getBytes("UTF-8"));
 		}
+
+		response.sendRedirect("/showCharacter.html");
 	}
+	
 
 }
