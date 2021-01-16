@@ -31,14 +31,12 @@ function draw(){
 		return;
 	}
 	if(Math.random()<findValueCookie("dodge")){
-		document.getElementById("takeOrDodge").innerHTML = "Esquivé ! <a href='/showCharacter'>Retour à la fiche de personnage</a><br>";
+		document.getElementById("takeOrDodge").innerHTML = "Esquivé ! <a href='/takeDammageFoe'>Retour à la fiche de personnage</a><br>";
 		document.getElementById("submitButton").style="display:none";
-		document.getElementById("testButton").innerHTML="Retirer" ;
 		console.log("dodge");
 	} else {
 		document.getElementById("takeOrDodge").innerHTML = "Aïe <br>";
 		document.getElementById("submitButton").style="";
-		document.getElementById("testButton").innerHTML="Retirer" ;
 		console.log("take");
 	}
 	
