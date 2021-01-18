@@ -20,7 +20,8 @@ Attaque ennemi: <span id="foeAttackValue" class="bold"></span><br>
 </p>
 
 <div id="enemydead">
-	<h3 id="labelEnemyBtn"></h3>
+	<h3 id="labelDied"></h3>
+	<h3 id="labelEnemiesKilled"></h3>
 	<h2>Counter: <span id="killCounter">0</span></h2>
 	<button id="nextEnemyBtn" onclick="window.location.href='/nextFoe'">Next enemy</button>
 </div>
@@ -36,17 +37,20 @@ document.getElementById("dodgeValue").innerHTML = findValueCookie("dodge");
 
 document.getElementById("foeNameValue").innerHTML = findValueCookie("foeName"); 
 document.getElementById("foeAttackValue").innerHTML = findValueCookie("foeAttack"); 
-document.getElementById("foeHPValue").innerHTML = findValueCookie("foeHP"); 
+document.getElementById("foeHPValue").innerHTML = findValueCookie("foeHP");
 
-if(findValueCookie("foeHP") != 0) {
+if(findValueCookie("HP") == 0)
+{
+	document.getElementById("labelDied").innerHTML = "You died";
+	document.getElementById("labelDied").innerHTML = "You killed " + findValueCookie("foeNumber") + " enemies.";
+	document.getElementById("nextEnemyBtn").disabled = true;
+}
+
+else if(findValueCookie("foeHP") != 0) {
 	document.getElementById("labelEnemyBtn").innerHTML = "";
 	document.getElementById("nextEnemyBtn").disabled = true;
 }
-else if(findValueCookie("HPValue") == 0)
-{
-	document.getElementById("labelEnemyBtn").innerHTML = "You loose";
-	document.getElementById("nextEnemyBtn").disabled = true;
-}
+
 else {
 	document.getElementById("labelEnemyBtn").innerHTML = "You killed the enemy";
 	document.getElementById("nextEnemyBtn").disabled = false;
@@ -69,6 +73,7 @@ nextEnemyBtn.onclick = function(){
 	};
 	xhr.send();
 }*/
+
 </script>
 
 <a href="/takeOrDodgeDammage.html" class ="button">Take Damage?</a>
