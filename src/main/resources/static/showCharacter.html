@@ -7,10 +7,10 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<link rel="stylesheet" href="general.css"/>
   	<link rel="shortcut icon" href="icon.ico" type="image/x-icon" />
+  	<script src="cookies.js"></script>
 </head>
 
 <body>
-
 
 <header class="top-line">
 		<nav class="main-menu top-menu">
@@ -31,12 +31,11 @@
 	<div class="card" style="width: 100%;">
 	  	<img src="perso1.jpg" class="card-img-top">
 	  	<div class="card-body">
-		    <h5 class="card-title"><span id="nameValue" class="bold"></span></h5>
+		    <h5 class="card-title"><span id="nameValue" class="bold"></h5>
 		    <p class="card-text">
 			HP : <span id="HPValue" class="bold" ></span><br>
 			ATTACK : <span id="attackValue" class="bold"></span><br>
-			ESQUIVE : <span id="dodgeValue" class="bold"></span><br>
-			</p>
+			ESQUIVE : <span id="dodgeValue" class="bold"></span><br></p>
 	  	</div>
 	</div>
 	</article>
@@ -70,6 +69,12 @@
 <a href="/takeOrDodgeDammage.html" >Take Damage?</a>
 	
 
+<div id="enemydead">
+	<h3 id="labelDied"></h3>
+	<h3 id="labelEnemiesKilled"></h3>
+	<h2>Counter: <span id="killCounter">0</span></h2>
+	<button id="nextEnemyBtn" onclick="window.location.href='/nextFoe'">Next enemy</button>
+</div>
 
 <script>
 //cherche et affiche le nom
@@ -80,9 +85,6 @@ document.getElementById("dodgeValue").innerHTML = findValueCookie("dodge");
 
 document.getElementById("foeNameValue").innerHTML = findValueCookie("foeName"); 
 document.getElementById("foeAttackValue").innerHTML = findValueCookie("foeAttack"); 
-<<<<<<< Updated upstream
-document.getElementById("foeHPValue").innerHTML = findValueCookie("foeHP"); 
-=======
 
 document.getElementById("foeHPValue").innerHTML = findValueCookie("foeHP");
 
@@ -105,10 +107,11 @@ else {
 	counter++;
 	document.getElementById("killCounter").innerHTML = counter;
 }
-</script>
-<a href="/takeOrDodgeDammage.html" class ="button">Take Damage?</a>
->>>>>>> Stashed changes
 
+
+</script>
+
+<a href="/takeOrDodgeDammage.html" class ="button">Take Damage?</a>
 <script>
 if(findValueCookie("foeHP") != 0) {
 	document.getElementById("labelEnemyBtn").innerHTML = "";
