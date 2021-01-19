@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> CHARACTER </title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="bootstrap.min.css"/>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" href="general.css"/>
+  	<link rel="shortcut icon" href="icon.ico" type="image/x-icon" />
+</head>
+
+<body>
+
+<header class="top-line">
+		<nav class="main-menu top-menu">
+		<a id="title">MORTAL KOMBA</a>
+		<a id="t">T</a>
+			<ul>
+				<li class="active"><a href="chooseCharacter.html">MENU</a></li>
+				<li><a href="#">NEW GAME</a></li>
+				<li><a href="contact.html">CONTACT</a></li>
+			</ul>
+		</nav>
+</header>
+
+
+<div class="row" id="div1">
+	<article class="col-md-4"> 
+	<h1>YOUR CHARACTER</h1>	
+	<div class="card" style="width: 100%;">
+	  	<img src="perso1.jpg" class="card-img-top">
+	  	<div class="card-body">
+		    <h5 class="card-title"><span id="nameValue" class="bold"></h5>
+		    <p class="card-text">
+			HP : <span id="HPValue" class="bold" ></span><br>
+			ATTACK : <span id="attackValue" class="bold"></span><br>
+			ESQUIVE : <span id="dodgeValue" class="bold"></span><br></p>
+	  	</div>
+	</div>
+	</article>
+	
+	<article class="col-md-4"> 
+	<h2>VS</h2>
+	<!-- <img id="img" src="poing-serre.png" class="card-img-top"> -->
+	<h2>COUNTER<br> <span id="killCounter">0</span></h2>
+	</article>
+	
+	<article class="col-md-4"> 
+	<h1>YOUR ENEMY</h1>
+	<div class="card" style="width: 100%;">
+	  	<img src="perso2.png" class="card-img-top">
+	  	<div class="card-body">
+		    <h5 class="card-title"><span id="foeNameValue" class="bold"></span></h5>
+		    <p class="card-text">
+			HP : <span id="foeHPValue" class="bold" onload="checkHP()"></span><br>
+			ATTACK: <span id="foeAttackValue" class="bold"></span><br>
+	  	</div>
+	</div>
+	</article>
+</div>
+
+<div id="enemydead">
+	<h3 id="labelEnemyBtn"></h3>
+	<button id="nextEnemyBtn" type="submit" class="btn btn-dark" onclick="window.location.href='/nextFoe'">NEXT ENEMY</button>
+</div>
+
+
+<a href="/takeOrDodgeDammage.html" >Take Damage?</a>
+	
+
+<div id="enemydead">
+	<h3 id="labelDied"></h3>
+	<h3 id="labelEnemiesKilled"></h3>
+	<h2>Counter: <span id="killCounter">0</span></h2>
+	<button id="nextEnemyBtn" onclick="window.location.href='/nextFoe'">Next enemy</button>
+</div>
+	
+<!--p id="reponse-serv"></p-->
+
+<script>
+//cherche et affiche le nom
+document.getElementById("nameValue").innerHTML = findValueCookie("name"); 
+document.getElementById("attackValue").innerHTML = findValueCookie("attack"); 
+document.getElementById("HPValue").innerHTML = findValueCookie("HP"); 
+document.getElementById("dodgeValue").innerHTML = findValueCookie("dodge"); 
+
+document.getElementById("foeNameValue").innerHTML = findValueCookie("foeName"); 
+document.getElementById("foeAttackValue").innerHTML = findValueCookie("foeAttack"); 
+
+document.getElementById("foeHPValue").innerHTML = findValueCookie("foeHP");
+
+if(findValueCookie("HP") == 0)
+{
+	document.getElementById("labelDied").innerHTML = "You died";
+	document.getElementById("labelDied").innerHTML = "You killed " + findValueCookie("foeNumber") + " enemies.";
+	document.getElementById("nextEnemyBtn").disabled = true;
+}
+
+else if(findValueCookie("foeHP") != 0) {
+	document.getElementById("labelEnemyBtn").innerHTML = "";
+	document.getElementById("nextEnemyBtn").disabled = true;
+}
+
+else {
+	document.getElementById("labelEnemyBtn").innerHTML = "You killed the enemy";
+	document.getElementById("nextEnemyBtn").disabled = false;
+	var counter = parseInt(document.getElementById("killCounter").innerHTML);
+	counter++;
+	document.getElementById("killCounter").innerHTML = counter;
+}
+
+/*var reponseDuServ = document.getElementById("reponse-serv");
+nextEnemyBtn.onclick = function(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'nextFoe');
+	xhr.onload = function(){
+		if(xhr.status === 200){
+			reponseDuServ.innerHTML = xhr.responseText;
+		}
+		else {
+			alert('Request failed. Returned status of ' + xhr.status);
+		}
+	};
+	xhr.send();
+}*/
+
+</script>
+
+<a href="/takeOrDodgeDammage.html" class ="button">Take Damage?</a>
+
+if(findValueCookie("foeHP") != 0) {
+	document.getElementById("labelEnemyBtn").innerHTML = "";
+	document.getElementById("nextEnemyBtn").disabled = true;
+}
+else if(findValueCookie("HPValue") == 0)
+{
+	document.getElementById("labelEnemyBtn").innerHTML = "You loose";
+	document.getElementById("nextEnemyBtn").disabled = true;
+}
+else {
+	document.getElementById("labelEnemyBtn").innerHTML = "You killed the enemy";
+	document.getElementById("nextEnemyBtn").disabled = false;
+	var counter = parseInt(document.getElementById("killCounter").innerHTML);
+	counter++;
+	document.getElementById("killCounter").innerHTML = counter;
+}
+</script>
+<footer id="footer">
+    WILLIAM GAULTIER - THOMAS PRADEAU - M1 MIAGE
+</footer>
+</body>
+
+</html>

@@ -7,17 +7,19 @@
 <body>
 
 <form action="/character" method="post">
-    <div>
-    	<label for="name">Nom :</label>
-        <select type="text" id="name" name="name">
-    		<option value="">--Please choose a Character--</option>
-    		<option value="Gimli">Gimli</option>
-    		<option value="Legolas">Legolas</option>
-		</select>
-    </div>
+	<div id="div1">
+    	<h1>CHOOSE YOUR CHARACTER</h1>
+	    <div class="center">
+	        <select class="form-select form-select-custom center" id="name" name="name">
+	            <option selected>-- PLEASE CHOOSE A CHARACTER --</option>
+			  	<option value="Gimli">Gimli</option>
+	    		<option value="Legolas">Legolas</option>
+	        </select>
+	    </div>
         <div class="button">
-        <button type="submit">Choisir</button>
-    </div>
+        	<button type="submit" class="btn btn-dark">LET'S GO</button>
+    	</div>
+   </div>
 </form>
 
 
