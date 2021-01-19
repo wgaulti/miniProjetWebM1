@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+	<title> MORTAL KOMBAT </title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="bootstrap.min.css"/>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" href="general.css"/>
+  	<link rel="shortcut icon" href="icon.ico" type="image/x-icon" />
+  </head>
 <body>
+<header class="top-line">
+		<nav class="main-menu top-menu">
+		<a id="title">MORTAL KOMBA</a>
+		<a id="t">T</a>
+			<ul>
+				<li class="active"><a href="chooseCharacter.html">MENU</a></li>
+				<li><a href="#">NEW GAME</a></li>
+				<li><a href="contact.html">CONTACT</a></li>
+			</ul>
+		</nav>
+</header>
 
 <form action="/character" method="post">
-    <div>
-        <label for="name">Nom :</label>
-        <input type="text" id="name" name="name"></input>
-    </div>
-        <div class="button">
-        <button type="submit">Choisir</button>
-    </div>
+    <div id="div1">
+    	<h1>CHOOSE YOUR CHARACTER</h1>
+    	<center>
+    	<select class="form-select form-select-custom">
+		  	<option selected>-- PLEASE CHOOSE A CHARACTER --</option>
+		  	<option value="Gimli">Gimli</option>
+    		<option value="Legolas">Legolas</option>
+		</select>
+		</center>
+	</div>
+        <button type="submit" class="btn btn-dark">LET'S GO</button>
 </form>
-
-
+<footer id="footer">
+    WILLIAM GAULTIER - THOMAS PRADEAU - M1 MIAGE
+</footer>
 </body>
 </html>
