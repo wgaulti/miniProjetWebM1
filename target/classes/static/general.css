@@ -92,3 +92,8 @@ form{
 	position:absolute;
 	bottom:0;
 }
+
+select {
+display: block;
+margin: 0 auto;
+}
