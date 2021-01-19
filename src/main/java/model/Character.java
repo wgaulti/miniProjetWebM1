@@ -6,16 +6,18 @@ public class Character {
 	private int hpMax;
 	private int attack;
 	private double dodgePercent = 0.8;
+	private String img;
 
 	public Character() {
 	}
 	
 
-	public Character(String name, int hpMax, int attack) {
+	public Character(String name, int hpMax, int attack, String img, double dodgePercent) {
 		super();
 		this.name = name;
 		this.hpMax = hpMax;
 		this.attack = attack;
+		this.img = img;
 	}
 
 
@@ -39,11 +41,15 @@ public class Character {
 	public int getAttack() {
 		return attack;
 	}
-
+	
+	
 	public void setAttack(int attack) {
 		this.attack = attack;
 	}
 	
+	public String getImg(){
+		return img;
+	}
 	
 
 	public double getDodgePercent() {

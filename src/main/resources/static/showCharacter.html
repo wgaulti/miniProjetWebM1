@@ -29,7 +29,7 @@
 	<article class="col-md-4"> 
 	<h1>YOUR CHARACTER</h1>	
 	<div class="card" style="width: 100%;">
-	  	<img src="perso1.jpg" class="card-img-top">
+	  	<img src="image/perso1.jpg" class="card-img-top" id="img-character">
 	  	<div class="card-body">
 		    <h5 class="card-title"><span id="nameValue" class="bold"></h5>
 		    <p class="card-text">
@@ -81,7 +81,8 @@
 document.getElementById("nameValue").innerHTML = findValueCookie("name"); 
 document.getElementById("attackValue").innerHTML = findValueCookie("attack"); 
 document.getElementById("HPValue").innerHTML = findValueCookie("HP"); 
-document.getElementById("dodgeValue").innerHTML = findValueCookie("dodge"); 
+document.getElementById("dodgeValue").innerHTML = findValueCookie("dodge");
+document.getElementById("img-character").innerHTML.src = "images/" + findValueCookie("img"); 
 
 document.getElementById("foeNameValue").innerHTML = findValueCookie("foeName"); 
 document.getElementById("foeAttackValue").innerHTML = findValueCookie("foeAttack"); 
