@@ -11,6 +11,7 @@
 
 <body>
 
+
 <header class="top-line">
 		<nav class="main-menu top-menu">
 		<a id="title">MORTAL KOMBA</a>
@@ -66,16 +67,8 @@
 
 
 <a href="/takeOrDodgeDammage.html" >Take Damage?</a>
-
-
-<div id="enemydead">
-	<h3 id="labelDied"></h3>
-	<h3 id="labelEnemiesKilled"></h3>
-	<h2>Counter: <span id="killCounter">0</span></h2>
-	<button id="nextEnemyBtn" onclick="window.location.href='/nextFoe'">Next enemy</button>
-</div>
 	
-<!--p id="reponse-serv"></p-->
+
 
 <script>
 //cherche et affiche le nom
@@ -86,47 +79,7 @@ document.getElementById("dodgeValue").innerHTML = findValueCookie("dodge");
 
 document.getElementById("foeNameValue").innerHTML = findValueCookie("foeName"); 
 document.getElementById("foeAttackValue").innerHTML = findValueCookie("foeAttack"); 
-
-document.getElementById("foeHPValue").innerHTML = findValueCookie("foeHP");
-
-if(findValueCookie("HP") == 0)
-{
-	document.getElementById("labelDied").innerHTML = "You died";
-	document.getElementById("labelDied").innerHTML = "You killed " + findValueCookie("foeNumber") + " enemies.";
-	document.getElementById("nextEnemyBtn").disabled = true;
-}
-
-else if(findValueCookie("foeHP") != 0) {
-	document.getElementById("labelEnemyBtn").innerHTML = "";
-	document.getElementById("nextEnemyBtn").disabled = true;
-}
-
-else {
-	document.getElementById("labelEnemyBtn").innerHTML = "You killed the enemy";
-	document.getElementById("nextEnemyBtn").disabled = false;
-	var counter = parseInt(document.getElementById("killCounter").innerHTML);
-	counter++;
-	document.getElementById("killCounter").innerHTML = counter;
-}
-
-/*var reponseDuServ = document.getElementById("reponse-serv");
-nextEnemyBtn.onclick = function(){
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'nextFoe');
-	xhr.onload = function(){
-		if(xhr.status === 200){
-			reponseDuServ.innerHTML = xhr.responseText;
-		}
-		else {
-			alert('Request failed. Returned status of ' + xhr.status);
-		}
-	};
-	xhr.send();
-}*/
-
-</script>
-
-<a href="/takeOrDodgeDammage.html" class ="button">Take Damage?</a>
+document.getElementById("foeHPValue").innerHTML = findValueCookie("foeHP"); 
 
 if(findValueCookie("foeHP") != 0) {
 	document.getElementById("labelEnemyBtn").innerHTML = "";
