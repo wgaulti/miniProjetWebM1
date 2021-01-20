@@ -94,12 +94,6 @@ h1 {
     text-shadow: black 0.1em 0.1em 0.5em;
 }
 
-.centerdiv {
-  margin: auto;
-  width: 100%;
-  padding: 10px;
-}
-
 h2{
     color: black;
     text-align:center;
@@ -169,37 +163,38 @@ form{
 	margin-top: 20px;
 }
 
-#fightBtn{
-	height:65px;
-    width:150px;
-    font-size: 35px;
+#nextEnemyBtn{
+	height:60px;
+	width:250px;
+    font-size: 30px;
 }
 
-#nextEnemyBtn{
-	height:65px;
-    width:200px;
-    font-size: 25px;
+#fightBtn{
+	height:60px;
+    width:250px;
+    font-size: 30px;
 }
 
 #dodgeBtn{
-	height:50px;
+	height:60px;
 	width:250px;
-    font-size: 25px;
+    font-size: 30px;
 }
+
+#endRound{
+	font-size: 20px;
+	height: 60px;
+	width:250px;
+}
+
 
 #char-card{
 	margin: 5%;
 }
 
-.btnValid{
-	font-size: 20px;
-	height: 45px;
-	font-weight: bold;
-}
-
 select {
-	display: block;
-	margin: 0 auto;
+display: block;
+margin: 0 auto;
 }
 
 div.disabled {

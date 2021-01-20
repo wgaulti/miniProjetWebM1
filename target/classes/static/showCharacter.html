@@ -75,7 +75,7 @@
 		<h3 class="label" id="labelEnemyBtn"></h3>
 		<h3 class="label" id="labelDied"></h3>
 		<h3 class="label" id="labelEnemiesKilled"></h3>
-		<div id=nextEnemyBtn></div>
+		<span id=nextEnemyBtn></span>
 	</div>
 
 	
@@ -127,34 +127,34 @@ else if(findValueCookie("foeHP") != 0) {
 }
 
 else {
-	document.getElementById("fightBtn").disabled = true;
+	document.getElementById("fightBtn").style.display = "none";
 	document.getElementById("labelEnemyBtn").innerHTML = "<h3 class=\"label-white\"> You killed the enemy </h3>";
-	document.getElementById("nextEnemyBtn").innerHTML = "<button class=\"btn btn-light\" id=\"nextEnemyBtn\" onclick=\"window.location.href='/nextFoe'\">Next enemy</button>";
+	document.getElementById("nextEnemyBtn").innerHTML = "<button class=\"btn btn-light center\" id=\"nextEnemyBtn\" onclick=\"window.location.href='/nextFoe'\">NEXT ENEMY</button>";
 }
 
 function fight(){
 	document.getElementById("fightBtn").style.display = "none";
 	document.getElementById("nextEnemyBtn").innerHTML = 
-		"<div id=\"div1\">"+
+		"<div>"+
 		"<h1 style=\"color:white;\">FIGHTING ROUND</h1>"+
 	    "<div id=\"takeOrDodge\"></div></div>"+
-		"<a id=\"dodgeBtn\" class=\"btn btn-warning\" onclick=\"draw()\">ATTACK/DODGE</a>"+
+		"<a id=\"dodgeBtn\" class=\"btn btn-warning center\" onclick=\"draw()\">ATTACK/DODGE</a>"+
 		"<div id=\"takeOrDodge\"><br></div><div>"+
-		"<button class=\"btn btn-primary btnValid\" onclick=\"window.location.href='/takeDammage'\" style=\"display:none\">END FIGHTING ROUND</button></div>"
+		"<button class=\"btn btn-primary center btnValid\" id=\"endRound\" onclick=\"window.location.href='/takeDammage'\" style=\"display:none\">END FIGHTING ROUND</button></div>"
 }
 
 function draw(){
 	document.getElementById("dodgeBtn").style.display = "none";
 	console.log("draw");
 	if(Math.random()<findValueCookie("dodge")){
-		document.getElementById("takeOrDodge").innerHTML = "<h3 class=\"label-blue\"> YOU DODGED THE ENEMY ATTACK! <br> YOU INFLICTED " + findValueCookie("attack") + " DAMAGE TO " + findValueCookie("foeName") +"!</h3>"+ 
-			"<button class=\"btn btn-primary btnValid\" onclick=\"window.location.href='/takeDammageFoe'\">END FIGHTING ROUND</button></div>"
+		document.getElementById("takeOrDodge").innerHTML = "<h3 class=\"label-blue\"> YOU DODGED THE ENEMY ATTACK! <br><br> YOU INFLICTED " + findValueCookie("attack") + " DAMAGE TO " + findValueCookie("foeName") +"!</h3>"+ 
+			"<button class=\"btn btn-primary center btnValid\" id=\"endRound\" onclick=\"window.location.href='/takeDammageFoe'\">END FIGHTING ROUND</button></div>"
 		document.getElementById("submitButton").style="display:none";
 		console.log("dodge");
 	} else {
-		document.getElementById("takeOrDodge").innerHTML = "<h3 class=\"label-red\">" + findValueCookie("foeName") + " INFLICTED " + findValueCookie("foeAttack") + "DAMAGE TO YOU... </h3><br>"+
+		document.getElementById("takeOrDodge").innerHTML = "<h3 class=\"label-red\">" + findValueCookie("foeName") + " INFLICTED " + findValueCookie("foeAttack") + " DAMAGE TO YOU... </h3><br>"+
 			"<h3 class=\"label-blue\">YOU INFLICTED " + findValueCookie("attack") + " DAMAGE TO " + findValueCookie("foeName") + "!</h3>" +
-			"<button class=\"btn btn-primary btnValid\" onclick=\"window.location.href='/takeDammage'\">END FIGHTING ROUND</button></div>"
+			"<button class=\"btn btn-primary center btnValid\" id=\"endRound\" onclick=\"window.location.href='/takeDammage'\">END FIGHTING ROUND</button>"
 		console.log("take");
 	}
 	
