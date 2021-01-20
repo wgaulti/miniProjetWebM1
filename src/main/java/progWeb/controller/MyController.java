@@ -89,7 +89,7 @@ public class MyController {
 			response.addCookie(new Cookie("HP", "" + chosen.getHpMax()));
 			response.addCookie(new Cookie("attack", "" + chosen.getAttack()));
 			response.addCookie(new Cookie("dodge", "" + chosen.getDodgePercent()));
-			response.addCookie(new Cookie("img", "" + chosen.getImg()));
+			response.addCookie(new Cookie("img", chosen.getImg()));
 		}
 		response.sendRedirect("/nextFoe");
 	}

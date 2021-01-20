@@ -14,7 +14,7 @@
 
 <header class="top-line">
 		<nav class="main-menu top-menu">
-		<a id="title">MORTAL KOMBA</a>
+		<a id="title"><img src="images/starfight.png" width=200></a>
 		<a id="t">T</a>
 			<ul>
 				<li class="active"><a href="chooseCharacter.html">MENU</a></li>
@@ -29,13 +29,14 @@
 	<article class="col-md-4"> 
 	<h1>YOUR CHARACTER</h1>	
 	<div class="card" style="width: 100%;">
-	  	<img src="image/perso1.jpg" class="card-img-top" id="img-character">
+	  	<img src="images/ashoka.png" class="card-img-top" id="img-character">
 	  	<div class="card-body">
-		    <h5 class="card-title"><span id="nameValue" class="bold"></h5>
+		    <h5 class="card-title"><span id="nameValue" class="bold"></span></h5>
 		    <p class="card-text">
 			HP : <span id="HPValue" class="bold" ></span><br>
 			ATTACK : <span id="attackValue" class="bold"></span><br>
-			ESQUIVE : <span id="dodgeValue" class="bold"></span><br></p>
+			ESQUIVE : <span id="dodgeValue" class="bold"></span><br>
+			IMAGE : <span id="imgValue" class="bold"></span><br></p>
 	  	</div>
 	</div>
 	</article>
@@ -49,7 +50,7 @@
 	<article class="col-md-4"> 
 	<h1>YOUR ENEMY</h1>
 	<div class="card" style="width: 100%;">
-	  	<img src="perso2.png" class="card-img-top">
+	  	<img src="perso2.png" class="card-img-top" id="img-foe">
 	  	<div class="card-body">
 		    <h5 class="card-title"><span id="foeNameValue" class="bold"></span></h5>
 		    <p class="card-text">
@@ -82,11 +83,12 @@ document.getElementById("nameValue").innerHTML = findValueCookie("name");
 document.getElementById("attackValue").innerHTML = findValueCookie("attack"); 
 document.getElementById("HPValue").innerHTML = findValueCookie("HP"); 
 document.getElementById("dodgeValue").innerHTML = findValueCookie("dodge");
-document.getElementById("img-character").innerHTML.src = "images/" + findValueCookie("img"); 
+document.getElementById("imgValue").innerHTML = "./images/" + findValueCookie("img") + ".png";
+document.getElementById("img-character").src = "images/" + findValueCookie("img") + ".png";
 
 document.getElementById("foeNameValue").innerHTML = findValueCookie("foeName"); 
 document.getElementById("foeAttackValue").innerHTML = findValueCookie("foeAttack"); 
-
+document.getElementById("img-foe").src = "images/" + findValueCookie("foeImg") + ".png";
 document.getElementById("foeHPValue").innerHTML = findValueCookie("foeHP");
 
 if(findValueCookie("HP") == 0)

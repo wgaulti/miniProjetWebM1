@@ -17,37 +17,37 @@ public class Universe {
 
 	public static void creation() {
 		
-		Character ashoka = new Character("Ashoka Tano", 300, 40, "ashoka.png", 0.4);
+		Character ashoka = new Character("Ashoka", 300, 40, "ashoka", 0.4);
 		characters.add(ashoka);
 		
-		Character luke = new Character("Luke Skywalker", 300, 40, "luke.png", 0.4);
+		Character luke = new Character("Luke", 300, 40, "luke", 0.4);
 		characters.add(luke);
 		
-		Character obiwan = new Character("Obi-Wan Kenobi", 300, 40, "obiwan.png", 0.4);
+		Character obiwan = new Character("ObiWan", 300, 40, "obiwan", 0.4);
 		characters.add(obiwan);
 		
-		Character quigon = new Character("Qui-Gon Jinn", 300, 40, "quigon.png", 0.4);
+		Character quigon = new Character("QuiGon", 300, 40, "quigon", 0.4);
 		characters.add(quigon);
 		
-		Character windu = new Character("Mace Windu", 300, 40, "windu.png", 0.4);
+		Character windu = new Character("Windu", 300, 40, "windu", 0.4);
 		characters.add(windu);
 		
-		Character yoda = new Character("Yoda", 300, 40, "ashoka.png", 0.4);
+		Character yoda = new Character("Yoda", 300, 40, "yoda", 0.4);
 		characters.add(yoda);
 		
-		Character darthmaul = new Character("Darth Maul", 300, 40, "darkmaul.png", 0.4);
+		Character darthmaul = new Character("DarthMaul", 300, 40, "darkmaul", 0.4);
 		monsters.add(darthmaul);
 		
-		Character dooku = new Character("Count Dooku", 300, 40, "dooku.png", 0.4);
+		Character dooku = new Character("Dooku", 300, 40, "dooku", 0.4);
 		monsters.add(dooku);
 		
-		Character grievous = new Character("General Grievous", 300, 40, "grievous.png", 0.4);
+		Character grievous = new Character("Grievous", 300, 40, "grievous", 0.4);
 		monsters.add(grievous);
 		
-		Character palpatine = new Character("Emperor Palpatine", 300, 40, "palpatine.png", 0.4);
+		Character palpatine = new Character("Palpatine", 300, 40, "palpatine", 0.4);
 		monsters.add(palpatine);
 		
-		Character vador = new Character("Darth Vader", 300, 40, "vador.png", 0.4);
+		Character vador = new Character("Vader", 300, 40, "vador", 0.4);
 		monsters.add(vador);
 		
 		/*
