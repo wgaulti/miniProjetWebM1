@@ -18,55 +18,53 @@
 <body>
 
 <header class="top-line">
-		<nav class="main-menu top-menu">
+	<nav class="main-menu top-menu">
 		<a id="title"><img src="images/starfight.png" width=400 id="logo-sf"></a>
-			<ul>
-				<li class="active"><a href="#" data-toggle="modal" data-target="#exampleModal">NEW GAME</a></li>
-				<li><a href="contact.html">CONTACT</a></li>
-			</ul>
-		</nav>
+		<ul>
+			<li class="active"><a href="#" data-toggle="modal" data-target="#exampleModal">NEW GAME</a></li>
+			<li><a href="contact.html">CONTACT</a></li>
+		</ul>
+	</nav>
 </header>
 
-  <h2>Modal Example</h2>
-  <!-- Trigger the modal with a button -->
+  <h2>New Game Validation Modal</h2>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	      </button><br>
-      <h3>   
-        All your progression will be erased...<br>
-        Are you sure you want to start a new game ?
-      </h3>  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='/newGame'">New Game</button>
-      </div>
-    </div>
-  </div>
+  	<div class="modal-dialog" role="document">
+ 		<div class="modal-content">
+      		<div class="modal-body">
+	      		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          		<span aria-hidden="true">&times;</span>
+	      		</button><br>
+				<h3>   
+				  All your progression will be erased...<br>
+				  Are you sure you want to start a new game ?
+				</h3>  
+      		</div>
+		    <div class="modal-footer">
+		      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		      <button type="button" class="btn btn-primary" onclick="window.location.href='/newGame'">New Game</button>
+		    </div>
+    	</div>
+	</div>
 </div>
   
 
 <div class="row">
 	<article class="col-md-1"></article> 
 	<article class="col-md-3">
-	<h1 class="labelCharCard">YOUR JEDI</h1>	
-	<div class="card" style="width: 100%;">
-	  	<img src="images/ashoka.png" class="card-img-top" id="img-character" width=500>
-	  	<div class="card-body">
-		    <h4 class="card-title"><span id="nameValue" class="bold"></span></h5>
-		    <p class="card-text">
-			<div id="healthbar">   
+		<h1 class="labelCharCard">YOUR JEDI</h1>	
+		<div class="card" style="width: 100%;">
+	  		<img src="images/ashoka.png" class="card-img-top" id="img-character" width=500>
+	  		<div class="card-body">
+		    	<h4 class="card-title"><span id="nameValue" class="bold"></span></h4>
+		    	<p class="card-text">
+				<div id="healthbar"></div>
+				ATTACK : <span id="attackValue" class="bold"></span><br>
+				SPEED : <span id="dodgeValue" class="bold"></span><br>
 			</div>
-			ATTACK : <span id="attackValue" class="bold"></span><br>
-			SPEED : <span id="dodgeValue" class="bold"></span><br>
-	  	</div>
-	</div>
+		</div>
 	</article>
 	
 	<article class="col-md-4"> 
@@ -79,27 +77,23 @@
 		<span id=nextEnemyBtn></span>
 	</div>
 
-	
 	</article>
 	
 	<article class="col-md-3"> 
-	<h1 class="labelCharCard">ENEMY SITH</h1>
-	<div class="card" style="width: 100%;">
-	  	<img src="perso2.png" class="card-img-top" id="img-foe" width=300>
-	  	<div class="card-body">
-		    <h4 class="card-title"><span id="foeNameValue" class="bold"></span></h5>
-		    <p class="card-text">
-		    <div id="foehealthbar">
+		<h1 class="labelCharCard">ENEMY SITH</h1>
+		<div class="card" style="width: 100%;">
+	  		<img src="perso2.png" class="card-img-top" id="img-foe" width=300>
+	  		<div class="card-body">
+		    	<h4 class="card-title"><span id="foeNameValue" class="bold"></span></h5>
+		    	<p class="card-text">
+		    	<div id="foehealthbar">
 			</div>
-			<!-- HP : <span id="foeHPValue" class="bold" onload="checkHP()"></span><br> -->
 			ATTACK: <span id="foeAttackValue" class="bold"></span><br><br>
 	  	</div>
 	</div>
 	</article>
 	<article class="col-md-1"></article> 
 </div>
-
-
 
 <script>
 
@@ -131,7 +125,7 @@ var healthPercentage = parseInt(findValueCookie("HP"))/parseInt(findValueCookie(
 	
 
 document.getElementById("healthbar").innerHTML = "<div class=\"progress\"><div class=\"progress-bar progress-bar-" + checkState(healthPercentage) + "\" role=\"progressbar\" aria-valuenow=\"40\""+
-	"aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:" + healthPercentage + "%\">"+
+	"aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:" + healthPercentage + "%\">HP: "+
 	findValueCookie("HP")+ "/" + findValueCookie("maxHP")+ "</div></div>";
 
 
@@ -144,7 +138,7 @@ var foeHealthPercentage = parseInt(findValueCookie("foeHP"))/parseInt(findValueC
 	
 
 document.getElementById("foehealthbar").innerHTML = "<div class=\"progress\"><div class=\"progress-bar progress-bar-" + checkState(foeHealthPercentage) + "\" role=\"progressbar\" aria-valuenow=\"40\""+
-	"aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:" + foeHealthPercentage + "%\">"+
+	"aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:" + foeHealthPercentage + "%\"> HP: "+
 	findValueCookie("foeHP")+ "/" + findValueCookie("foeMaxHP")+ "</div></div>";
 
 console.log(checkState(foeHealthPercentage));
