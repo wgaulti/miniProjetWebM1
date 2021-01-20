@@ -9,11 +9,28 @@
 	text-align: center;
 	font-size: 150%;
 }
+
 #div1
 {
-	padding-top: 5%;
-	padding-bottom: 3%;
+	padding-top: 10%;
+	padding-bottom:1%;
 }
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place front is invalid - may break your css so removed */  
+    padding-top: 100px; /* Location of the box - don't know what this does?  If it is to move your modal down by 100px, then just change top below to 100px and remove this*/
+    left: 0;
+    right:0; /* Full width (left and right 0) */
+    top: 0;
+    bottom: 0; /* Full height top and bottom 0 */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    z-index: 9999; /* Sit on top - higher than any other z-index in your site*/
+}
+
+
 .top-line {
 	background-color: black;
 	position: relative;
@@ -59,12 +76,30 @@
 
 body{
     background-color: #ffffff;
-background-image: url("images/star-wars-backgrounds.jpg");
+	background-image: url("images/star-wars-backgrounds.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
 }
-h1{
+
+.end{
+    background-color: #ffffff;
+	background-image: url("images/lightspeed.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+h1 {
     color: white;
     text-align:center;
+    text-shadow: black 0.1em 0.1em 0.5em;
 }
+
+.centerdiv {
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+
 h2{
     color: black;
     text-align:center;
@@ -74,6 +109,28 @@ h3{
     color: white;
     text-align:center;
 }
+
+.label-blue{
+    color: aqua;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.label-red{
+    color: red;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.label-white{
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.labelCharCard {
+    color: white;
+    text-align:center;
+}
+
+
 
 .form-select-custom{
 	width:25%;
@@ -115,12 +172,34 @@ form{
 #fightBtn{
 	height:65px;
     width:150px;
-    font-size: 40px;
+    font-size: 35px;
+}
+
+#nextEnemyBtn{
+	height:65px;
+    width:200px;
+    font-size: 25px;
+}
+
+#dodgeBtn{
+	height:50px;
+	width:250px;
+    font-size: 25px;
+}
+
+#char-card{
+	margin: 5%;
+}
+
+.btnValid{
+	font-size: 20px;
+	height: 45px;
+	font-weight: bold;
 }
 
 select {
-display: block;
-margin: 0 auto;
+	display: block;
+	margin: 0 auto;
 }
 
 div.disabled {

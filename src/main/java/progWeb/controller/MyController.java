@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.Character;
 import model.Universe;
@@ -73,7 +74,7 @@ public class MyController {
 
 	@RequestMapping(value = "/character", method = RequestMethod.POST)
 	public void choiceCharacter(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String charName = request.getParameter("name");
+		String charName = request.getParameter("char-select");
 		Character chosen = null;
 		ArrayList<Character> chars = Universe.getCharacters();
 		for (Character c : Universe.getCharacters()) {
@@ -94,25 +95,18 @@ public class MyController {
 		response.sendRedirect("/nextFoe");
 	}
 
-//	@RequestMapping(value = "/character", method = RequestMethod.GET)
-//	public void showCharacter(HttpServletRequest request, HttpServletResponse response)
-//			throws UnsupportedEncodingException, IOException {
-//		String descriptif = "";
-//		for (Cookie c : request.getCookies()) {
-//			System.out.println(c.getName() + c.getValue());
-//			if (c.getName().equals("name")) {
-//				descriptif += "name :" + c.getValue() + "\n";
-//			}
-//			if (c.getName().equals("attack")) {
-//				descriptif += "attack :" + c.getValue() + "\n";
-//			}
-//			if (c.getName().equals("HP")) {
-//				descriptif += "HP :" + c.getValue() + "\n";
-//			}
-//		}
-//		response.getOutputStream().write(descriptif.getBytes("UTF-8"));
-//
-//	}
+	@RequestMapping(value = "/showCharInfo", method = RequestMethod.POST)
+	public @ResponseBody Character showCharInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String charName = request.getParameter("name");
+		Character chosen = null;
+		ArrayList<Character> chars = Universe.getCharacters();
+		for (Character c : Universe.getCharacters()) {
+			if (c.getName().equals(charName)) {
+				chosen = c;
+			}
+		}
+		return chosen;
+	}
 
 	@RequestMapping(value = "/takeDammage", method = RequestMethod.GET)
 	public void takeDammage(HttpServletRequest request, HttpServletResponse response)
@@ -191,12 +185,26 @@ public class MyController {
 			response.addCookie(new Cookie("foeAttack", "" + foe.getAttack()));
 			response.addCookie(new Cookie("foeImg", "" + foe.getImg()));
 			
-		} catch (IndexOutOfBoundsException e) {
-			response.getOutputStream().write("Tous les ennemis sont vaincus".getBytes("UTF-8"));
+			response.sendRedirect("/showCharacter.html");
+			
+		} catch (IndexOutOfBoundsException e) {		
+			response.sendRedirect("/gameFinished.html");
 		}
 
-		response.sendRedirect("/showCharacter.html");
 	}
+	
+	@RequestMapping(value = "/newGame", method = RequestMethod.GET)
+	public void newGame(HttpServletRequest request, HttpServletResponse response)
+			throws UnsupportedEncodingException, IOException {
+	
+		for (Cookie c : request.getCookies()) {
+			c.setMaxAge(0);
+			response.addCookie(c);
+		}
+
+		response.sendRedirect("/chooseCharacter.html");
+	}
+	
 	
 
 }

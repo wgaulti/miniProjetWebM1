@@ -20,7 +20,7 @@ public class Universe {
 		Character ashoka = new Character("Ashoka", 300, 40, "ashoka", 0.4);
 		characters.add(ashoka);
 		
-		Character luke = new Character("Luke", 300, 40, "luke", 0.4);
+		Character luke = new Character("Luke", 30, 40, "luke", 0.4);
 		characters.add(luke);
 		
 		Character obiwan = new Character("ObiWan", 300, 40, "obiwan", 0.4);
@@ -32,7 +32,7 @@ public class Universe {
 		Character windu = new Character("Windu", 300, 40, "windu", 0.4);
 		characters.add(windu);
 		
-		Character yoda = new Character("Yoda", 300, 40, "yoda", 0.4);
+		Character yoda = new Character("Yoda", 300, 300, "yoda", 0.4);
 		characters.add(yoda);
 		
 		Character darthmaul = new Character("DarthMaul", 300, 40, "darkmaul", 0.4);
