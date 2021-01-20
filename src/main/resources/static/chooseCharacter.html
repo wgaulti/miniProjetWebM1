@@ -1,45 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>STAR FIGHT - Choose your Jedi</title>
+	<title>STAR FIGHT - Defeat the Siths</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="bootstrap.min.css"/>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="general.css"/>
   	<link rel="shortcut icon" href="images/icon.jpg" type="image/x-icon" />
   	<script src="cookies.js"></script>
-  </head>
+</head>
+
 <body>
+
 <header class="top-line">
 		<nav class="main-menu top-menu">
 		<a id="title"><img src="images/starfight.png" width=400 id="logo-sf"></a>
 			<ul>
-				<li class="active"><a href="chooseCharacter.html">MENU</a></li>
-				<li><a href="#">NEW GAME</a></li>
 				<li><a href="contact.html">CONTACT</a></li>
 			</ul>
 		</nav>
 </header>
 
+		<br><br><br>
+    	<h1>CHOOSE YOUR JEDI</h1>
+    	<div class="row">  
+		    <article class="col-md-5"></article> 
+		    <article class="col-md-2">
+		    	<div id=char-card></div>
+		    	<div class="button"></div>  
+			</article> 
+		    <article class="col-md-5"></article> 
+		</div>
+
+
 <form action="/character" method="post">
-	<div id="div1">
-    	<h1>CHOOSE YOUR JEDI</h1><br>
-	        <select class="form-select form-select-custom" id="name" name="name">
-	            <option selected>-- PLEASE CHOOSE A JEDI --</option>
-			  	<option value="Yoda">Yoda</option>
-	    		<option value="ObiWan">ObiWan</option>
-	    		<option value="QuiGon">QuiGon</option>
-	    		<option value="Ashoka">Ashoka</option>
-	    		<option value="Luke">Luke</option>
-	    		<option value="Windu">Windu</option>
-	        </select>
-	    </div>
-        <div class="button">
-        	<button type="submit" class="btn btn-dark">LET'S GO</button>
-    	</div>
-   </div>
+        <select class="form-select form-select-custom" id="char-select" name="char-select" onchange="madeAjaxCall()">
+            <option selected>-- PLEASE CHOOSE A JEDI --</option>
+		  	<option value="Yoda">Yoda</option>
+    		<option value="ObiWan">ObiWan</option>
+    		<option value="QuiGon">QuiGon</option>
+    		<option value="Ashoka">Ashoka</option>
+    		<option value="Luke">Luke</option>
+    		<option value="Windu">Windu</option>
+        </select>
+        <br>
+        <button type="submit" class="btn btn-light btnValid">LET'S GO</button>
 </form>
 
+<script type="text/javascript">
+	function madeAjaxCall(){
+   		$.ajax({
+    		type: "post",
+    		url: "http://localhost:8080/showCharInfo",
+    		cache: false,
+    		data:'name=' + $("#char-select").val(),
+    		success: function(response){
+	     		$('#result').html("");
+	     		var obj = response;
+	     		$('#char-card').html("<div class=\"card\" style=\"width: 100%;\">"+
+	  								"<img src=\"images/"+ obj.img + ".png\" class=\"card-img-top\" id=\"img-character\" width=500>"+
+	  								"<div class=\"card-body\">"+
+		    						"<h5 class=\"card-title\"><span id=\"nameValue\" class=\"bold\">"+ obj.name +"</span></h5>"+
+								    "<p class=\"card-text\">"+
+									"HP : <span id=\"HPValue\" class=\"bold\" >"+obj.hpMax+"</span><br>"+
+									"ATTACK : <span id=\"attackValue\" class=\"bold\">"+obj.attack+"</span><br>"+
+									"ESQUIVE : <span id=\"dodgeValue\" class=\"bold\">"+obj.dodgePercent+"</span><br>"+
+							  		"</div></div>");
+    		},
+	    	error: function(){
+	     		alert('Error while request..');
+    		}
+		});
+  }
+</script>
 
 <footer id="footer">
     WILLIAM GAULTIER - THOMAS PRADEAU - M1 MIAGE
