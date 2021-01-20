@@ -59,16 +59,22 @@
 
 body{
     background-color: #ffffff;
-background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+background-image: url("images/star-wars-backgrounds.jpg");
 }
 h1{
-    color: black;
+    color: white;
     text-align:center;
 }
 h2{
     color: black;
     text-align:center;
 }
+
+h3{
+    color: white;
+    text-align:center;
+}
+
 .form-select-custom{
 	width:25%;
 	color: black;
@@ -91,6 +97,10 @@ form{
 	font-size: 100%;
 	position:absolute;
 	bottom:0;
+}
+
+#logo-sf{
+	margin-top: 20px;
 }
 
 select {

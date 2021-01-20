@@ -89,6 +89,7 @@ public class MyController {
 			response.addCookie(new Cookie("HP", "" + chosen.getHpMax()));
 			response.addCookie(new Cookie("attack", "" + chosen.getAttack()));
 			response.addCookie(new Cookie("dodge", "" + chosen.getDodgePercent()));
+			response.addCookie(new Cookie("img", chosen.getImg()));
 		}
 		response.sendRedirect("/nextFoe");
 	}
@@ -188,6 +189,7 @@ public class MyController {
 			response.addCookie(new Cookie("foeName", foe.getName()));
 			response.addCookie(new Cookie("foeHP", "" + foe.getHpMax()));
 			response.addCookie(new Cookie("foeAttack", "" + foe.getAttack()));
+			response.addCookie(new Cookie("foeImg", "" + foe.getImg()));
 			
 		} catch (IndexOutOfBoundsException e) {
 			response.getOutputStream().write("Tous les ennemis sont vaincus".getBytes("UTF-8"));
