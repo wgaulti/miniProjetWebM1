@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-/target/
-=======
+
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -12,9 +10,11 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
->>>>>>> parent of a72255f... Delete .gitignore
 /bin/
-target/classes/META-INF/maven/progWebTP5/progWeb/pom.properties
 target/classes/META-INF/maven/progWebTP5/progWeb/pom.properties
 target/classes/META-INF/MANIFEST.MF
 src/main/resources/.DS_Store
+src/main/resources/static/images/.DS_Store
+src/main/resources/static/images/.DS_Store
+src/.DS_Store
+

@@ -59,16 +59,22 @@
 
 body{
     background-color: #ffffff;
-background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+background-image: url("images/star-wars-backgrounds.jpg");
 }
 h1{
-    color: black;
+    color: white;
     text-align:center;
 }
 h2{
     color: black;
     text-align:center;
 }
+
+h3{
+    color: white;
+    text-align:center;
+}
+
 .form-select-custom{
 	width:25%;
 	color: black;
@@ -85,7 +91,7 @@ form{
     margin:0% auto;
 }
 #footer{
-	color: black;
+	color: yellow;
 	width: 100%;
 	text-align: center;
 	font-size: 100%;
@@ -93,7 +99,31 @@ form{
 	bottom:0;
 }
 
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#logo-sf{
+	margin-top: 20px;
+}
+
+#fightBtn{
+	height:65px;
+    width:150px;
+    font-size: 40px;
+}
+
 select {
 display: block;
 margin: 0 auto;
+}
+
+div.disabled {
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
