@@ -20,6 +20,14 @@ public class Character {
 		this.img = img;
 		this.dodgePercent = dodgePercent;
 	}
+	
+	public Character(String name, int hpMax, int attack, String img) {
+		super();
+		this.name = name;
+		this.hpMax = hpMax;
+		this.attack = attack;
+		this.img = img;
+	}
 
 
 
