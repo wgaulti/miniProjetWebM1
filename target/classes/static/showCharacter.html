@@ -25,7 +25,8 @@
 
 
 <div class="row" id="div1">
-	<article class="col-md-4"> 
+	<article class="col-md-1"></article> 
+	<article class="col-md-3"> 
 	<h1>YOUR JEDI</h1>	
 	<div class="card" style="width: 100%;">
 	  	<img src="images/ashoka.png" class="card-img-top" id="img-character" width=500>
@@ -43,16 +44,17 @@
 	<h2>VS</h2>
 	
 	<div id="enemydead">
-	<h3 id="labelEnemyBtn"></h3>
-	<h3 id="labelDied"></h3>
-	<h3 id="labelEnemiesKilled"></h3>
-	<div id=nextEnemyBtn></div>
+		<button id="fightBtn" class="center" onclick="window.location.href='/takeOrDodgeDammage.html'">FIGHT</button>
+		<h3 id="labelEnemyBtn"></h3>
+		<h3 id="labelDied"></h3>
+		<h3 id="labelEnemiesKilled"></h3>
+		<div id=nextEnemyBtn></div>
 	</div>
+
 	
-	<a href="/takeOrDodgeDammage.html" >Take Damage?</a>
 	</article>
 	
-	<article class="col-md-4"> 
+	<article class="col-md-3"> 
 	<h1>ENEMY SITH</h1>
 	<div class="card" style="width: 100%;">
 	  	<img src="perso2.png" class="card-img-top" id="img-foe" width=300>
@@ -64,6 +66,7 @@
 	  	</div>
 	</div>
 	</article>
+	<article class="col-md-1"></article> 
 </div>
 
 <script>
@@ -83,7 +86,7 @@ if(findValueCookie("HP") == 0)
 {
 	document.getElementById("labelDied").innerHTML = "You died";
 	document.getElementById("labelEnnemiesKilled").innerHTML = "You killed " + findValueCookie("foeNumber") + " enemies.";
-	document.getElementById("nextEnemyBtn").disabled = true;
+	document.getElementById("fightBtn").disabled = true;
 }
 
 
@@ -93,6 +96,7 @@ else if(findValueCookie("foeHP") != 0) {
 }
 
 else {
+	document.getElementById("fightBtn").disabled = true;
 	document.getElementById("labelEnemyBtn").innerHTML = "You killed the enemy";
 	document.getElementById("nextEnemyBtn").innerHTML = "<button id=\"nextEnemyBtn\" onclick=\"window.location.href='/nextFoe'\">Next enemy</button>";
 }
