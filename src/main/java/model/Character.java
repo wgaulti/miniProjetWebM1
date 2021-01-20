@@ -5,7 +5,7 @@ public class Character {
 	private String name;
 	private int hpMax;
 	private int attack;
-	private double dodgePercent = 0.8;
+	private double dodgePercent;
 	private String img;
 
 	public Character() {
@@ -18,6 +18,7 @@ public class Character {
 		this.hpMax = hpMax;
 		this.attack = attack;
 		this.img = img;
+		this.dodgePercent = dodgePercent;
 	}
 
 

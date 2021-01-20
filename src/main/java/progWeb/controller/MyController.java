@@ -87,6 +87,7 @@ public class MyController {
 			response.setHeader("attack", "" + chosen.getAttack());
 			Cookie cookieName = new Cookie("name", charName);
 			response.addCookie(cookieName);
+			response.addCookie(new Cookie("maxHP", "" + chosen.getHpMax()));
 			response.addCookie(new Cookie("HP", "" + chosen.getHpMax()));
 			response.addCookie(new Cookie("attack", "" + chosen.getAttack()));
 			response.addCookie(new Cookie("dodge", "" + chosen.getDodgePercent()));
@@ -181,6 +182,7 @@ public class MyController {
 			Character foe = Universe.getMonsters().get(previousFoe + 1);
 			response.addCookie(new Cookie("foeNumber", "" + (previousFoe + 1)));
 			response.addCookie(new Cookie("foeName", foe.getName()));
+			response.addCookie(new Cookie("foeMaxHP", "" + foe.getHpMax()));
 			response.addCookie(new Cookie("foeHP", "" + foe.getHpMax()));
 			response.addCookie(new Cookie("foeAttack", "" + foe.getAttack()));
 			response.addCookie(new Cookie("foeImg", "" + foe.getImg()));

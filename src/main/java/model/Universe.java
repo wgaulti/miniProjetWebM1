@@ -17,37 +17,37 @@ public class Universe {
 
 	public static void creation() {
 		
-		Character ashoka = new Character("Ashoka", 300, 40, "ashoka", 0.4);
+		Character ashoka = new Character("Ashoka", 180, 80, "ashoka", 0.6);
 		characters.add(ashoka);
 		
-		Character luke = new Character("Luke", 30, 40, "luke", 0.4);
+		Character luke = new Character("Luke", 200, 100, "luke", 0.4);
 		characters.add(luke);
 		
-		Character obiwan = new Character("ObiWan", 300, 40, "obiwan", 0.4);
+		Character obiwan = new Character("ObiWan", 250, 100, "obiwan", 0.3);
 		characters.add(obiwan);
 		
-		Character quigon = new Character("QuiGon", 300, 40, "quigon", 0.4);
+		Character quigon = new Character("QuiGon", 300, 80, "quigon", 0.3);
 		characters.add(quigon);
 		
-		Character windu = new Character("Windu", 300, 40, "windu", 0.4);
+		Character windu = new Character("Windu", 350, 100, "windu", 0.2);
 		characters.add(windu);
 		
-		Character yoda = new Character("Yoda", 300, 300, "yoda", 0.4);
+		Character yoda = new Character("Yoda", 90, 200, "yoda", 0.8);
 		characters.add(yoda);
 		
-		Character darthmaul = new Character("DarthMaul", 300, 40, "darkmaul", 0.4);
+		Character darthmaul = new Character("DarthMaul", 150, 40, "darkmaul", 0.4);
 		monsters.add(darthmaul);
 		
-		Character dooku = new Character("Dooku", 300, 40, "dooku", 0.4);
+		Character dooku = new Character("Dooku", 200, 60, "dooku", 0.4);
 		monsters.add(dooku);
 		
-		Character grievous = new Character("Grievous", 300, 40, "grievous", 0.4);
+		Character grievous = new Character("Grievous", 200, 70, "grievous", 0.4);
 		monsters.add(grievous);
 		
-		Character palpatine = new Character("Palpatine", 300, 40, "palpatine", 0.4);
+		Character palpatine = new Character("Palpatine", 300, 80, "palpatine", 0.4);
 		monsters.add(palpatine);
 		
-		Character vador = new Character("Vader", 300, 40, "vador", 0.4);
+		Character vador = new Character("Vader", 400, 100, "vador", 0.4);
 		monsters.add(vador);
 		
 		/*

@@ -59,11 +59,12 @@
 	<div class="card" style="width: 100%;">
 	  	<img src="images/ashoka.png" class="card-img-top" id="img-character" width=500>
 	  	<div class="card-body">
-		    <h5 class="card-title"><span id="nameValue" class="bold"></span></h5>
+		    <h4 class="card-title"><span id="nameValue" class="bold"></span></h5>
 		    <p class="card-text">
-			HP : <span id="HPValue" class="bold" ></span><br>
+			<div id="healthbar">   
+			</div>
 			ATTACK : <span id="attackValue" class="bold"></span><br>
-			ESQUIVE : <span id="dodgeValue" class="bold"></span><br>
+			SPEED : <span id="dodgeValue" class="bold"></span><br>
 	  	</div>
 	</div>
 	</article>
@@ -86,10 +87,12 @@
 	<div class="card" style="width: 100%;">
 	  	<img src="perso2.png" class="card-img-top" id="img-foe" width=300>
 	  	<div class="card-body">
-		    <h5 class="card-title"><span id="foeNameValue" class="bold"></span></h5>
+		    <h4 class="card-title"><span id="foeNameValue" class="bold"></span></h5>
 		    <p class="card-text">
-			HP : <span id="foeHPValue" class="bold" onload="checkHP()"></span><br>
-			ATTACK: <span id="foeAttackValue" class="bold"></span><br>
+		    <div id="foehealthbar">
+			</div>
+			<!-- HP : <span id="foeHPValue" class="bold" onload="checkHP()"></span><br> -->
+			ATTACK: <span id="foeAttackValue" class="bold"></span><br><br>
 	  	</div>
 	</div>
 	</article>
@@ -100,18 +103,52 @@
 
 <script>
 
+function checkState(stateHP){
+	var barState;
+	
+	if(stateHP<20.0){
+		barState = "danger";
+	}
+	
+	else if(stateHP<50.0){
+		barState = "warning";
+	}
+	
+	else{
+		barState = "success";
+	}
+	
+	return barState;
+}
+
 //cherche et affiche le nom
 document.getElementById("nameValue").innerHTML = findValueCookie("name"); 
 document.getElementById("attackValue").innerHTML = findValueCookie("attack"); 
-document.getElementById("HPValue").innerHTML = findValueCookie("HP"); 
 document.getElementById("dodgeValue").innerHTML = findValueCookie("dodge");
 document.getElementById("img-character").src = "images/" + findValueCookie("img") + ".png";
+var healthPercentage = parseInt(findValueCookie("HP"))/parseInt(findValueCookie("maxHP"))*100;
+//document.getElementById("HPValue").innerHTML = healthPercentage;
+	
+
+document.getElementById("healthbar").innerHTML = "<div class=\"progress\"><div class=\"progress-bar progress-bar-" + checkState(healthPercentage) + "\" role=\"progressbar\" aria-valuenow=\"40\""+
+	"aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:" + healthPercentage + "%\">"+
+	findValueCookie("HP")+ "/" + findValueCookie("maxHP")+ "</div></div>";
+
 
 document.getElementById("foeNameValue").innerHTML = findValueCookie("foeName"); 
 document.getElementById("foeAttackValue").innerHTML = findValueCookie("foeAttack"); 
 document.getElementById("img-foe").src = "images/" + findValueCookie("foeImg") + ".png";
-document.getElementById("foeHPValue").innerHTML = findValueCookie("foeHP");
+//document.getElementById("foeHPValue").innerHTML = findValueCookie("foeHP");
+var foeHealthPercentage = parseInt(findValueCookie("foeHP"))/parseInt(findValueCookie("foeMaxHP"))*100;
+//document.getElementById("foeHPValue").innerHTML = foeHealthPercentage;
+	
 
+document.getElementById("foehealthbar").innerHTML = "<div class=\"progress\"><div class=\"progress-bar progress-bar-" + checkState(foeHealthPercentage) + "\" role=\"progressbar\" aria-valuenow=\"40\""+
+	"aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:" + foeHealthPercentage + "%\">"+
+	findValueCookie("foeHP")+ "/" + findValueCookie("foeMaxHP")+ "</div></div>";
+
+console.log(checkState(foeHealthPercentage));
+	
 if(findValueCookie("HP") == 0)
 {
 	document.getElementById("labelDied").innerHTML = "<h3 class=\"label-red\"> YOU WERE DEFEATED BY " + findValueCookie("foeName") + "...</h3>";
@@ -122,8 +159,8 @@ if(findValueCookie("HP") == 0)
 
 else if(findValueCookie("foeHP") != 0) {
 	document.getElementById("labelEnemyBtn").innerHTML = "";
-	document.getElementById("nextEnemy").style.display = "none";
-	
+	//document.getElementById("nextEnemy").style.display = "none";	
+
 }
 
 else {
@@ -140,7 +177,7 @@ function fight(){
 	    "<div id=\"takeOrDodge\"></div></div>"+
 		"<a id=\"dodgeBtn\" class=\"btn btn-warning center\" onclick=\"draw()\">ATTACK/DODGE</a>"+
 		"<div id=\"takeOrDodge\"><br></div><div>"+
-		"<button class=\"btn btn-primary center btnValid\" id=\"endRound\" onclick=\"window.location.href='/takeDammage'\" style=\"display:none\">END FIGHTING ROUND</button></div>"
+		"<button class=\"btn btn-primary center btnValid\" id=\"endRound\" onclick=\"window.location.href='/takeDammage'\" style=\"display:none\">END FIGHTING ROUND</button></div>";
 }
 
 function draw(){
@@ -154,7 +191,7 @@ function draw(){
 	} else {
 		document.getElementById("takeOrDodge").innerHTML = "<h3 class=\"label-red\">" + findValueCookie("foeName") + " INFLICTED " + findValueCookie("foeAttack") + " DAMAGE TO YOU... </h3><br>"+
 			"<h3 class=\"label-blue\">YOU INFLICTED " + findValueCookie("attack") + " DAMAGE TO " + findValueCookie("foeName") + "!</h3>" +
-			"<button class=\"btn btn-primary center btnValid\" id=\"endRound\" onclick=\"window.location.href='/takeDammage'\">END FIGHTING ROUND</button>"
+			"<button class=\"btn btn-primary center btnValid\" id=\"endRound\" onclick=\"window.location.href='/takeDammage'\">END FIGHTING ROUND</button>";
 		console.log("take");
 	}
 	
