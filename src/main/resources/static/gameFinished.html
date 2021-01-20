@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>STAR FIGHT - You won!</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="bootstrap.min.css"/>
+    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="general.css"/>
+  	<link rel="shortcut icon" href="images/icon.jpg" type="image/x-icon" />
+  	<script src="cookies.js"></script>
+  	
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<header class="top-line">
+		<nav class="main-menu top-menu">
+		<a id="title"><img src="images/starfight.png" width=400 id="logo-sf"></a>
+			<ul>
+				<li class="active"><a href="/newGame">NEW GAME</a></li>
+				<li><a href="contact.html">CONTACT</a></li>
+			</ul>
+		</nav>
+</header>
+
+<body class="end">
+<div id="finish-image" class="center"></div>
+
+
+<script>
+	window.onload = function() {
+		  gameFinish();
+		  setTimeout(function(){ 
+			  document.getElementById("finish-image").innerHTML = "<img src=\"images/congrats.png\" class=\"card-img-top\" id=\"img-character\" width=500>";
+			  }, 3000);
+		};
+	
+	function gameFinish(){
+		document.getElementById("finish-image").innerHTML = "<img src=\"images/finish.gif\" class=\"card-img-top\" id=\"img-character\" width=500>";
+	}
+	
+	function congrats(){
+		document.getElementById("finish-image").innerHTML = "<img src=\"images/congrats.png\" class=\"card-img-top\" id=\"img-character\" width=500>"
+	}
+
+</script>
+
+<footer id="footer">
+    WILLIAM GAULTIER - THOMAS PRADEAU - M1 MIAGE
+</footer>
+</body>
+
+</html>
