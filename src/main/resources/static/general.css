@@ -104,6 +104,7 @@ h3{
     text-align:center;
 }
 
+
 .label-blue{
     color: aqua;
     text-shadow: black 0.1em 0.1em 0.2em;
@@ -187,6 +188,9 @@ form{
 	width:250px;
 }
 
+#footer{
+	position: absolute;
+}
 
 #char-card{
 	margin: 5%;
