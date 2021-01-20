@@ -17,3 +17,4 @@ buildNumber.properties
 target/classes/META-INF/maven/progWebTP5/progWeb/pom.properties
 target/classes/META-INF/maven/progWebTP5/progWeb/pom.properties
 target/classes/META-INF/MANIFEST.MF
+src/main/resources/.DS_Store
