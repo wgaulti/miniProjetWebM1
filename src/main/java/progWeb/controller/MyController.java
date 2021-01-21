@@ -2,7 +2,6 @@ package progWeb.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -71,13 +70,13 @@ public class MyController {
 			System.out.println("" + key + " : " + param.get(key)[0]);
 		}
 	}
-
+	
+	// Fonction qui récupère le personnage choisi et stocke ses infos dans des cookies
 	@RequestMapping(value = "/character", method = RequestMethod.POST)
 	public void choiceCharacter(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String charName = request.getParameter("char-select");
 		Character chosen = null;
-		ArrayList<Character> chars = Universe.getCharacters();
-		for (Character c : Universe.getCharacters()) {
+		for (Character c : Universe.getJedis()) {
 			if (c.getName().equals(charName)) {
 				chosen = c;
 			}
@@ -87,6 +86,7 @@ public class MyController {
 			response.setHeader("attack", "" + chosen.getAttack());
 			Cookie cookieName = new Cookie("name", charName);
 			response.addCookie(cookieName);
+			response.addCookie(new Cookie("maxHP", "" + chosen.getHpMax()));
 			response.addCookie(new Cookie("HP", "" + chosen.getHpMax()));
 			response.addCookie(new Cookie("attack", "" + chosen.getAttack()));
 			response.addCookie(new Cookie("dodge", "" + chosen.getDodgePercent()));
@@ -94,20 +94,21 @@ public class MyController {
 		}
 		response.sendRedirect("/nextFoe");
 	}
-
+	
+	// Fonction qui envoie les infos du personnage dans le select de chooseCharacter.html (appelée avec l'ajax)
 	@RequestMapping(value = "/showCharInfo", method = RequestMethod.POST)
 	public @ResponseBody Character showCharInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String charName = request.getParameter("name");
 		Character chosen = null;
-		ArrayList<Character> chars = Universe.getCharacters();
-		for (Character c : Universe.getCharacters()) {
+		for (Character c : Universe.getJedis()) {
 			if (c.getName().equals(charName)) {
 				chosen = c;
 			}
 		}
 		return chosen;
 	}
-
+	
+	// Fonction qui effectue l'attaque de l'ennemi sur le personnage non appelée en cas d'esquive
 	@RequestMapping(value = "/takeDammage", method = RequestMethod.GET)
 	public void takeDammage(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException, IOException {
@@ -137,6 +138,7 @@ public class MyController {
 
 	}
 	
+	// Fonction qui effectue l'attaque du personnage sur l'ennemi
 	@RequestMapping(value = "/takeDammageFoe", method = RequestMethod.GET)
 	public void takeDammageFoe(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException, IOException {
@@ -165,6 +167,7 @@ public class MyController {
 
 	}
 
+	// Fonction qui stocke les information de l'ennemi suivant dans les cookies ennemis
 	@RequestMapping(value = "/nextFoe", method = RequestMethod.GET)
 	public void nextFoe(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException, IOException {
@@ -178,9 +181,10 @@ public class MyController {
 			}
 		}
 		try {
-			Character foe = Universe.getMonsters().get(previousFoe + 1);
+			Character foe = Universe.getSiths().get(previousFoe + 1);
 			response.addCookie(new Cookie("foeNumber", "" + (previousFoe + 1)));
 			response.addCookie(new Cookie("foeName", foe.getName()));
+			response.addCookie(new Cookie("foeMaxHP", "" + foe.getHpMax()));
 			response.addCookie(new Cookie("foeHP", "" + foe.getHpMax()));
 			response.addCookie(new Cookie("foeAttack", "" + foe.getAttack()));
 			response.addCookie(new Cookie("foeImg", "" + foe.getImg()));
@@ -193,6 +197,7 @@ public class MyController {
 
 	}
 	
+	// Fonction qui efface tous les cookies du site et permet de lancer une nouvelle partie
 	@RequestMapping(value = "/newGame", method = RequestMethod.GET)
 	public void newGame(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException, IOException {
