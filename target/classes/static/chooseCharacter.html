@@ -23,17 +23,31 @@
 
 <!-- Là où le personnage s'affiche en dynamique -->
 <br><br><br>
-<h1>CHOOSE YOUR JEDI</h1>
-<div class="row">  
-	<article class="col-md-5"></article> 
+<h1>CHOOSE YOUR CHARACTER</h1>
+<div class="row">
+	<article class="col-md-5"></article>
     <article class="col-md-2">
     	<div id=char-card></div>
-    	<div class="button"></div>  
-	</article> 
-    <article class="col-md-5"></article> 
+    	<div class="button"></div>
+	</article>
+    <article class="col-md-5"></article>
 </div>
 
+
+
+<!-- Selection faction -->
+<form>
+        <select class="form-select form-select-custom" id="faction-select" name="faction-select" onchange="chooseFaction()">
+            <option selected>-- PLEASE CHOOSE YOUR FACTION --</option>
+		  	<option value="Jedis">JEDI</option>
+		  	<option value="Siths">SITH</option>
+        </select>
+</form>
+<br />
+<div id="Perso" />
+<!-- <div id="factsel"></div>-->
 <!-- Selection du personnage -->
+<!-- 
 <form action="/character" method="post">
         <select class="form-select form-select-custom" id="char-select" name="char-select" onchange="madeAjaxCall()">
             <option selected>-- PLEASE CHOOSE A JEDI --</option>
@@ -47,7 +61,9 @@
         <br>
         <button type="submit" class="btn btn-light btnValid">LET'S GO</button>
 </form>
+-->
 
+<div id="score"></div>
 <script type="text/javascript">
 // Appel ajax qui récupère les données du personnage dans le selectpicker et les mets dans une card bootstrap
 	function madeAjaxCall(){
@@ -74,6 +90,41 @@
     		}
 		});
   }
+</script>
+<script type="text/javascript">
+function chooseFaction(){
+		$.ajax({
+		type: "post",
+		url: "http://localhost:8080/showFaction",
+		cache: false,
+		data:'faction=' + $("#faction-select").val(),
+		success: function(response){
+     		$('#result').html("");
+     		console.log(response);
+     		const option = `<option selected>-- PLEASE CHOOSE A CHARACTER --</option>` + response.slice().map((el) => `<option value="${el}">${el}</option>`).join();
+     		console.log(option);
+     		var obj = response;
+     		$('#Perso').html("<form action=\"/character\" method=\"post\"><select class=\"form-select form-select-custom\" id=\"char-select\" name=\"char-select\" onchange=\"madeAjaxCall()\">" + option + "</select><br><button type=\"submit\" class=\"btn btn-light btnValid\">LET'S GO</button></form>");
+		},
+    	error: function(){
+     		alert('Error while request..');
+		}
+	});
+}
+
+		$.ajax({
+		type: "post",
+		url: "http://localhost:8080/score",
+		cache: false,
+		success: function(response){
+     		console.log(response);
+     		$('#score').html("<div><h1>LAST SCORE : </h1><h1 id='test'>"+ response + "</h1></div>");
+		},
+    	error: function(){
+     		alert('Error while request..');
+		}
+	});
+
 </script>
 
 <footer id="footer">

@@ -10,6 +10,14 @@ public class Universe {
 	public static ArrayList<Character> getJedis() {
 		return jedis;
 	}
+	public static boolean isJedis(String name) {
+		for (Character c : Universe.getSiths()) {
+			if (c.getName().equals(name)) {
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	public static ArrayList<Character> getSiths() {
 		return siths;

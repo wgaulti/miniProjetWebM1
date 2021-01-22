@@ -103,7 +103,19 @@ h3{
     color: white;
     text-align:center;
 }
-
+h4{
+	color: Yellow;
+}
+#test{
+	animation: Test 1s infinite;
+	color: Yellow;
+	text-align:center;
+}
+@keyframes Test{
+	0%{opacity: 1;}
+	50%{opacity: 0;}
+	100%{opacity: 1;}
+}
 
 .label-blue{
     color: aqua;
@@ -188,10 +200,12 @@ form{
 	width:250px;
 }
 
-#footer{
-	position: absolute;
+#scor{
+	color: yellow;
+	width: 100%;
+	text-align: center;
+	font-size: 100%;
 }
-
 #char-card{
 	margin: 5%;
 }
