@@ -81,7 +81,7 @@
    		
   }
   
-//fonction qui recupere la valeur de la faction selectionnée
+//fonction qui récupère la valeur de la faction selectionnée
 function getFactionValue() { 
 	var fac = document.getElementsByName('faction-select'); 
 		for(i = 0; i < fac.length; i++) { 
@@ -121,20 +121,20 @@ function chooseFaction(){
 	}
 	 
 }
-
+	
 //Permet d'afficher le score de la partie précédente lors du démarrage de la page.
-		$.ajax({
-		type: "post",
-		url: "http://localhost:8080/score",
-		cache: false,
-		success: function(response){
-     		console.log(response);
-     		$('#score').html("<div><h1>LAST SCORE : </h1><h1 id='test'>"+ response + " ENEMIES</h1></div>");
-		},
-    	error: function(){
-     		alert('Error while request..');
-		}
-	});
+$.ajax({
+	type: "post",
+	url: "http://localhost:8080/score",
+	cache: false,
+	success: function(response){
+    	console.log(response);
+    	$('#score').html("<div><h1>LAST SCORE : </h1><h1 id='test'>"+ response + " ENEMIES</h1></div>");
+	},
+   	error: function(){
+    	alert('Error while request..');
+	}
+});
 
 </script>
 </body>

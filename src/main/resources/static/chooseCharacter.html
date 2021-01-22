@@ -121,19 +121,20 @@ function chooseFaction(){
 	}
 	 
 }
-	//Permet d'afficher le score de la partie précédente lors du démarrage de la page.
-	$.ajax({
-		type: "post",
-		url: "http://localhost:8080/score",
-		cache: false,
-		success: function(response){
-     		console.log(response);
-     		$('#score').html("<div><h1>LAST SCORE : </h1><h1 id='test'>"+ response + " ENEMIES</h1></div>");
-		},
-    	error: function(){
-     		alert('Error while request..');
-		}
-	});
+	
+//Permet d'afficher le score de la partie précédente lors du démarrage de la page.
+$.ajax({
+	type: "post",
+	url: "http://localhost:8080/score",
+	cache: false,
+	success: function(response){
+    	console.log(response);
+    	$('#score').html("<div><h1>LAST SCORE : </h1><h1 id='test'>"+ response + " ENEMIES</h1></div>");
+	},
+   	error: function(){
+    	alert('Error while request..');
+	}
+});
 
 </script>
 </body>
