@@ -81,7 +81,7 @@
    		
   }
   
-  
+//fonction qui récupère la valeur de la faction selectionnée
 function getFactionValue() { 
 	var fac = document.getElementsByName('faction-select'); 
 		for(i = 0; i < fac.length; i++) { 
@@ -91,6 +91,7 @@ function getFactionValue() {
 		}
 } 
 
+//fonction qui récupére la faction choisie par le joueur, et récupére les données personnage correspondante à celle-ci.
 function chooseFaction(){
 		$.ajax({
 		type: "post",
@@ -120,8 +121,8 @@ function chooseFaction(){
 	}
 	 
 }
-
-		$.ajax({
+	//Permet d'afficher le score de la partie précédente lors du démarrage de la page.
+	$.ajax({
 		type: "post",
 		url: "http://localhost:8080/score",
 		cache: false,
