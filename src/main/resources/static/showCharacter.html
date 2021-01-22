@@ -21,8 +21,7 @@
 		<a id="title"><img src="images/starfight.png" width=400 id="logo-sf"></a>
 		<ul>
 			<!-- lien qui ouvre un pop up de confirmation lors du clic sur new game -->
-			<li class="active"><a href="#" data-toggle="modal" data-target="#exampleModal">NEW GAME</a></li>
-			<li><a href="contact.html">CONTACT</a></li>
+			<li class="active"><a href="#" data-toggle="modal" data-target="#newGameModal">NEW GAME</a></li>
 		</ul>
 	</nav>
 </header>
@@ -31,7 +30,7 @@
 <h2>New Game Validation Modal</h2>
 
   <!-- Modal -->
- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="newGameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   	<div class="modal-dialog" role="document">
  		<div class="modal-content">
       		<div class="modal-body">
@@ -86,7 +85,7 @@
 		<div class="card" style="width: 100%;">
 	  		<img src="perso2.png" class="card-img-top" id="img-foe" width=300>
 	  		<div class="card-body">
-		    	<h4 class="card-title"><span id="foeNameValue" class="bold"></span></h5>
+		    	<h4 class="card-title"><span id="foeNameValue" class="bold"></span></h4>
 		    	<p class="card-text">
 		    	<div id="foehealthbar">
 			</div>
@@ -199,7 +198,7 @@ function draw(){
 
 
 <footer id="footer">
-    WILLIAM GAULTIER - THOMAS PRADEAU - M1 MIAGE
+    WILLIAM GAULTIER - THOMAS PRADEAU - M1 MIAGE -
 </footer>
 </body>
 

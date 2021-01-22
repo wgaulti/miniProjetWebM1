@@ -45,20 +45,25 @@ public class MyController {
 	public void choiceCharacter(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String charName = request.getParameter("char-select");
 		Character chosen = null;
+		String faction="";
 		if (isJedis(charName)) {
 			for (Character c : Universe.getJedis()) {
 				if (c.getName().equals(charName)) {
 					chosen = c;
+					faction = "jedi";
 				}
 			}
 		}
+		
 		else {
 			for (Character c : Universe.getSiths()) {
 				if (c.getName().equals(charName)) {
 					chosen = c;
+					faction = "sith";
 				}
 			}
 		}
+		
 		if (chosen != null) {
 			response.setHeader("HP", "" + chosen.getHpMax());
 			response.setHeader("attack", "" + chosen.getAttack());
@@ -69,14 +74,15 @@ public class MyController {
 			response.addCookie(new Cookie("attack", "" + chosen.getAttack()));
 			response.addCookie(new Cookie("dodge", "" + chosen.getDodgePercent()));
 			response.addCookie(new Cookie("img", chosen.getImg()));
+			response.addCookie(new Cookie("faction", faction));
 		}
 		response.sendRedirect("/nextFoe");
 	}
 	
-	// Fonction qui récupère la faction choisi et stocke ses infos dans des cookies
+	// Fonction qui récupère la faction choisie et stocke ses infos dans des cookies
 		@RequestMapping(value = "/faction", method = RequestMethod.POST)
 		public void choiceFaction(HttpServletRequest request, HttpServletResponse response) throws IOException {
-			String factionName = request.getParameter("faction-select");
+			//String factionName = request.getParameter("faction-select");
 			//System.out.println(factionName);
 			response.sendRedirect("/nextFoe");
 		}
@@ -122,7 +128,7 @@ public class MyController {
 		return perso;
 	}
 	
-	// Fonction qui effectue l'attaque de l'ennemi sur le personnage non appelée en cas d'esquive
+	// Fonction qui effectue l'attaque de l'ennemi sur le personnage, non appelée en cas d'esquive
 	@RequestMapping(value = "/takeDammage", method = RequestMethod.GET)
 	public void takeDammage(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException, IOException {
@@ -233,6 +239,21 @@ public class MyController {
 		}
 		response.sendRedirect("/chooseCharacter.html");
 	}
+	
+	// Fonction qui permet de lancer une nouvelle partie après une victoire
+		@RequestMapping(value = "/newGameWin", method = RequestMethod.GET)
+		public void newGameWin(HttpServletRequest request, HttpServletResponse response)
+				throws UnsupportedEncodingException, IOException {
+			
+			int enemiesDefeated = 0;
+			for (Cookie c : request.getCookies()) {
+				if (c.getName().equals("foeNumber")) {
+					enemiesDefeated = Integer.parseInt(c.getValue()) + 1;
+				}
+			}
+			response.addCookie(new Cookie("foeNumber", ""+ enemiesDefeated));
+			response.sendRedirect("/chooseCharacter.html");
+		}
 
 	//Fonction qui permet de récupérer le dernier score obtenu et d'effacer les cookies
 	@RequestMapping(value = "/score", method = RequestMethod.POST)

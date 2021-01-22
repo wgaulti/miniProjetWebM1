@@ -16,34 +16,36 @@
 		<nav class="main-menu top-menu">
 			<a id="title"><img src="images/starfight.png" width=400 id="logo-sf"></a>
 			<ul>
-				<li><a href="contact.html">CONTACT</a></li>
+				<li></li>
 			</ul>
 		</nav>
 </header>
 
 <!-- Là où le personnage s'affiche en dynamique -->
 <br><br><br>
-<h1>CHOOSE YOUR CHARACTER</h1>
+<h1 id="factionName">CHOOSE YOUR FACTION</h1>
+
+<!-- Selection faction -->
+<form>
+        <input type="radio" class="btn-check" value="Jedis" name="faction-select" id="select-jedi" autocomplete="off" onclick="chooseFaction()">
+		<label class="btn btn-primary" for="select-jedi"><img src="images/jedi.png" width=100></label>
+		<input type="radio" class="btn-check" value="Siths" name="faction-select" id="select-sith" autocomplete="off" onclick="chooseFaction()">
+		<label class="btn btn-danger" for="select-sith"><img src="images/sith.png" width=100></label>
+</form>
+
+<br>
+
 <div class="row">
 	<article class="col-md-5"></article>
     <article class="col-md-2">
-    	<div id=char-card></div>
     	<div class="button"></div>
+    	<div id=char-card></div>
 	</article>
     <article class="col-md-5"></article>
 </div>
 
 
 
-<!-- Selection faction -->
-<form>
-        <select class="form-select form-select-custom" id="faction-select" name="faction-select" onchange="chooseFaction()">
-            <option selected>-- PLEASE CHOOSE YOUR FACTION --</option>
-		  	<option value="Jedis">JEDI</option>
-		  	<option value="Siths">SITH</option>
-        </select>
-</form>
-<br />
 <!-- Selection du personnage -->
 <div id="Perso"></div>
 
@@ -52,7 +54,7 @@
 
 <script type="text/javascript">
 // Appel ajax qui récupère les données du personnage dans le selectpicker et les mets dans une card bootstrap
-	function madeAjaxCall(){
+	function showCharacter(){
    		$.ajax({
     		type: "post",
     		url: "http://localhost:8080/showCharInfo",
@@ -62,39 +64,61 @@
 	     		$('#result').html("");
 	     		var obj = response;
 	     		$('#char-card').html("<div class=\"card\" style=\"width: 100%;\">"+
-	  								"<img src=\"images/"+ obj.img + ".png\" class=\"card-img-top\" id=\"img-character\" width=500>"+
+	  								"<img src=\"images/"+ obj.img + ".png\" class=\"card-img-top\" id=\"img-character\">"+
 	  								"<div class=\"card-body\">"+
 		    						"<h5 class=\"card-title\"><span id=\"nameValue\" class=\"bold\">"+ obj.name +"</span></h5>"+
 								    "<p class=\"card-text\">"+
 									"HP : <span id=\"HPValue\" class=\"bold\" >"+obj.hpMax+"</span><br>"+
 									"ATTACK : <span id=\"attackValue\" class=\"bold\">"+obj.attack+"</span><br>"+
 									"SPEED : <span id=\"dodgeValue\" class=\"bold\">"+obj.dodgePercent+"</span><br>"+
-							  		"</div></div>");
+							  		"</div></div><br>");
     		},
 	    	error: function(){
 	     		alert('Error while request..');
     		}
 		});
+   		document.getElementById("btnGo").style.display = "inline";
+   		
   }
+  
+  
+function getFactionValue() { 
+	var fac = document.getElementsByName('faction-select'); 
+		for(i = 0; i < fac.length; i++) { 
+			if(fac[i].checked){
+				return fac[i].value;
+			}
+		}
+} 
 
 function chooseFaction(){
 		$.ajax({
 		type: "post",
 		url: "http://localhost:8080/showFaction",
 		cache: false,
-		data:'faction=' + $("#faction-select").val(),
+		data:'faction=' + getFactionValue(), //$("#faction-select").val(),
 		success: function(response){
      		$('#result').html("");
      		console.log(response);
      		const option = `<option selected>-- PLEASE CHOOSE A CHARACTER --</option>` + response.slice().map((el) => `<option value="${el}">${el}</option>`).join();
      		console.log(option);
      		var obj = response;
-     		$('#Perso').html("<form action=\"/character\" method=\"post\"><select class=\"form-select form-select-custom\" id=\"char-select\" name=\"char-select\" onchange=\"madeAjaxCall()\">" + option + "</select><br><button type=\"submit\" class=\"btn btn-light btnValid\">LET'S GO</button></form>");
+     		$('#Perso').html("<form action=\"/character\" method=\"post\"><select class=\"form-select form-select-custom\" id=\"char-select\" name=\"char-select\" onchange=\"showCharacter()\">" + option + "</select><br><button id=\"btnGo\" type=\"submit\" class=\"btn btn-light btnValid\" style=\"display: none;\">LET'S FIGHT</button></form><br>");
 		},
     	error: function(){
      		alert('Error while request..');
 		}
 	});
+	
+	document.getElementById("char-card").innerHTML = ""; 
+	
+	if(getFactionValue()==="Jedis"){
+		document.getElementById("factionName").innerHTML = "CHOOSE YOUR JEDI"; 
+	}
+	else{
+		document.getElementById("factionName").innerHTML = "CHOOSE YOUR SITH"; 
+	}
+	 
 }
 
 		$.ajax({
@@ -103,7 +127,7 @@ function chooseFaction(){
 		cache: false,
 		success: function(response){
      		console.log(response);
-     		$('#score').html("<div><h1>LAST SCORE : </h1><h1 id='test'>"+ response + "</h1></div>");
+     		$('#score').html("<div><h1>LAST SCORE : </h1><h1 id='test'>"+ response + " ENEMIES</h1></div>");
 		},
     	error: function(){
      		alert('Error while request..');
@@ -111,9 +135,10 @@ function chooseFaction(){
 	});
 
 </script>
+</body>
 
 <footer id="footer">
-    WILLIAM GAULTIER - THOMAS PRADEAU - M1 MIAGE
+    WILLIAM GAULTIER - THOMAS PRADEAU - M1 MIAGE -
 </footer>
-</body>
+
 </html>

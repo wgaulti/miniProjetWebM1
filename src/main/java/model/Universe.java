@@ -42,25 +42,25 @@ public class Universe {
 		Character windu = new Character("Windu", 350, 100, "windu", 0.2);
 		jedis.add(windu);
 		
-		Character yoda = new Character("Yoda", 90, 200, "yoda", 0.8);
+		Character yoda = new Character("Yoda", 90, 200, "yoda", 0.9);
 		jedis.add(yoda);
 		
 		
 		// SITHS
 		
-		Character darthmaul = new Character("DarthMaul", 150, 40, "darkmaul");
+		Character darthmaul = new Character("DarthMaul", 150, 40, "darkmaul", 0.7);
 		siths.add(darthmaul);
 		
-		Character dooku = new Character("Dooku", 200, 60, "dooku");
+		Character dooku = new Character("Dooku", 200, 60, "dooku", 0.5);
 		siths.add(dooku);
 		
-		Character grievous = new Character("Grievous", 200, 70, "grievous");
+		Character grievous = new Character("Grievous", 200, 70, "grievous", 0.3);
 		siths.add(grievous);
 		
-		Character palpatine = new Character("Palpatine", 300, 80, "palpatine");
+		Character palpatine = new Character("Palpatine", 300, 80, "palpatine", 0.9);
 		siths.add(palpatine);
 		
-		Character vador = new Character("Vader", 400, 100, "vador");
+		Character vador = new Character("Vader", 400, 100, "vador", 0.2);
 		siths.add(vador);
 		
 

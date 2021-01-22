@@ -20,8 +20,7 @@
 			<nav class="main-menu top-menu">
 				<a id="title"><img src="images/starfight.png" width=400 id="logo-sf"></a>
 				<ul>
-					<li class="active"><a href="/newGame">NEW GAME</a></li>
-					<li><a href="contact.html">CONTACT</a></li>
+					<li class="active"><a href="/newGameWin">NEW GAME</a></li>
 				</ul>
 			</nav>
 	</header>
@@ -33,21 +32,36 @@
 <script>
 	// Lors du chargement de la page on lance la fonction gameFinish et au bout de 3 secondes on affiche une autre image.
 	window.onload = function() {
-		  gameFinish();
-		  setTimeout(function(){ 
-			  document.getElementById("finish-image").innerHTML = "<img src=\"images/congrats.png\" class=\"card-img-top\" id=\"img-character\" width=500>";
+		if(findValueCookie("faction")==="jedi"){
+			var gif = "finish";
+			var congrats = "congrats";
+		}
+		else{
+			var gif = "aldeeran"
+			var congrats = "congrats_bad"
+		}
+		
+		gameFinish();
+		setTimeout(function(){
+			  document.getElementById("finish-image").innerHTML = "<img src=\"images/"+congrats+".png\" class=\"card-img-top\" id=\"img-character\" width=500>";
 			  }, 3000);
 		};
 	
 	function gameFinish(){
-		document.getElementById("finish-image").innerHTML = "<img src=\"images/finish.gif\" class=\"card-img-top\" id=\"img-character\" width=500>";
+		if(findValueCookie("faction")==="jedi"){
+			var gif = "finish";
+		}
+		else{
+			var gif = "aldeeran"
+		}
+		document.getElementById("finish-image").innerHTML = "<img src=\"images/"+ gif +".gif\" class=\"card-img-top\" id=\"img-character\" width=500>";
 	}
 	
 
 </script>
 
 	<footer id="footer">
-	    WILLIAM GAULTIER - THOMAS PRADEAU - M1 MIAGE
+	    WILLIAM GAULTIER - THOMAS PRADEAU - M1 MIAGE -
 	</footer>
 </body>
 
