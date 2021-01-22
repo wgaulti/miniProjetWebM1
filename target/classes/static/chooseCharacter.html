@@ -76,28 +76,29 @@
     		}
 		});
   }
+//fonction qui récupére la faction choisie par le joueur, et récupére les données personnage correspondante à celle-ci.
+	function chooseFaction(){
+			$.ajax({
+			type: "post",
+			url: "http://localhost:8080/showFaction",
+			cache: false,
+			data:'faction=' + $("#faction-select").val(),
+			success: function(response){
+				$('#result').html("");
+				console.log(response);
+				const option = `<option selected>-- PLEASE CHOOSE A CHARACTER --</option>` + response.slice().map((el) => `<option value="${el}">${el}</option>`).join();
+				console.log(option);
+				var obj = response;
+				$('#Perso').html("<form action=\"/character\" method=\"post\"><select class=\"form-select form-select-custom\" id=\"char-select\" name=\"char-select\" onchange=\"madeAjaxCall()\">" + option + "</select><br><button type=\"submit\" class=\"btn btn-light btnValid\">LET'S GO</button></form>");
+			},
+			error: function(){
+				alert('Error while request..');
+			}
+		});
+	}
 
-function chooseFaction(){
-		$.ajax({
-		type: "post",
-		url: "http://localhost:8080/showFaction",
-		cache: false,
-		data:'faction=' + $("#faction-select").val(),
-		success: function(response){
-     		$('#result').html("");
-     		console.log(response);
-     		const option = `<option selected>-- PLEASE CHOOSE A CHARACTER --</option>` + response.slice().map((el) => `<option value="${el}">${el}</option>`).join();
-     		console.log(option);
-     		var obj = response;
-     		$('#Perso').html("<form action=\"/character\" method=\"post\"><select class=\"form-select form-select-custom\" id=\"char-select\" name=\"char-select\" onchange=\"madeAjaxCall()\">" + option + "</select><br><button type=\"submit\" class=\"btn btn-light btnValid\">LET'S GO</button></form>");
-		},
-    	error: function(){
-     		alert('Error while request..');
-		}
-	});
-}
-
-		$.ajax({
+//Permet d'afficher le score de la partie précédente lors du démarrage de la page.
+	$.ajax({
 		type: "post",
 		url: "http://localhost:8080/score",
 		cache: false,

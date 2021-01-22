@@ -10,6 +10,8 @@ public class Universe {
 	public static ArrayList<Character> getJedis() {
 		return jedis;
 	}
+
+	//Permet de savoir si la faction choisi est Jedis ou non.
 	public static boolean isJedis(String name) {
 		for (Character c : Universe.getSiths()) {
 			if (c.getName().equals(name)) {
