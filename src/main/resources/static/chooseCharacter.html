@@ -44,26 +44,12 @@
         </select>
 </form>
 <br />
-<div id="Perso" />
-<!-- <div id="factsel"></div>-->
 <!-- Selection du personnage -->
-<!-- 
-<form action="/character" method="post">
-        <select class="form-select form-select-custom" id="char-select" name="char-select" onchange="madeAjaxCall()">
-            <option selected>-- PLEASE CHOOSE A JEDI --</option>
-		  	<option value="Yoda">Yoda</option>
-    		<option value="ObiWan">ObiWan</option>
-    		<option value="QuiGon">QuiGon</option>
-    		<option value="Ashoka">Ashoka</option>
-    		<option value="Luke">Luke</option>
-    		<option value="Windu">Windu</option>
-        </select>
-        <br>
-        <button type="submit" class="btn btn-light btnValid">LET'S GO</button>
-</form>
--->
+<div id="Perso"></div>
 
+<!-- Affichage du score précedent obtenu -->
 <div id="score"></div>
+
 <script type="text/javascript">
 // Appel ajax qui récupère les données du personnage dans le selectpicker et les mets dans une card bootstrap
 	function madeAjaxCall(){
@@ -90,8 +76,7 @@
     		}
 		});
   }
-</script>
-<script type="text/javascript">
+
 function chooseFaction(){
 		$.ajax({
 		type: "post",

@@ -21,8 +21,6 @@ import static model.Universe.isJedis;
 
 @Controller
 public class MyController {
-	private static int nbHello = 0;
-
 
 	@RequestMapping(value = "/param", method = RequestMethod.GET)
 	public void showParamFromGet(HttpServletRequest request, HttpServletResponse response)
@@ -79,7 +77,7 @@ public class MyController {
 		@RequestMapping(value = "/faction", method = RequestMethod.POST)
 		public void choiceFaction(HttpServletRequest request, HttpServletResponse response) throws IOException {
 			String factionName = request.getParameter("faction-select");
-			System.out.println(factionName);
+			//System.out.println(factionName);
 			response.sendRedirect("/nextFoe");
 		}
 	
@@ -122,12 +120,6 @@ public class MyController {
 		}
 		
 		return perso;
-	}
-		
-	@RequestMapping(value = "/test", method = RequestMethod.POST)
-	public @ResponseBody String test(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("test");
-		return "test";
 	}
 	
 	// Fonction qui effectue l'attaque de l'ennemi sur le personnage non appelée en cas d'esquive
@@ -227,7 +219,7 @@ public class MyController {
 
 	}
 	
-	// Fonction qui efface tous les cookies du site et permet de lancer une nouvelle partie
+	// Fonction qui permet de lancer une nouvelle partie
 	@RequestMapping(value = "/newGame", method = RequestMethod.GET)
 	public void newGame(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException, IOException {
@@ -242,6 +234,7 @@ public class MyController {
 		response.sendRedirect("/chooseCharacter.html");
 	}
 
+	//Fonction qui permet de récupérer le dernier score obtenu et d'effacer les cookies
 	@RequestMapping(value = "/score", method = RequestMethod.POST)
 	@ResponseBody
 	public int score(HttpServletRequest request, HttpServletResponse response)
